@@ -1,0 +1,10 @@
+asgiref==3.7.2
+Django==5.0
+django-jazzmin==2.6.0
+numpy==1.26.2
+opencv-contrib-python==4.8.1.78
+opencv-python==4.8.1.78
+Pillow==10.1.0
+sqlparse==0.4.4
+typing_extensions==4.9.0
+tzdata==2023.3

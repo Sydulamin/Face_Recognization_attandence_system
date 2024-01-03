@@ -1,0 +1,116 @@
+<!-- templates/attendance/attendance_input_form.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Attendance Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #343a40;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div>
+        <a href="{% url 'teacher_dashboard' %}" class="btn btn-light">Home</a>
+        <h1>Attendance Form</h1>
+    </div>
+</header>
+
+<div class="container">
+    <form method="POST" action="{% url 'attendance_input' %}">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="department">Department:</label>
+                    <select name="department" id="department" class="form-control">
+                        <option value="">Select Department</option>
+                        {% for department in departments %}
+                        <option value="{{ department.id }}">{{ department.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="semester">Semester:</label>
+                    <select name="semester" id="semester" class="form-control">
+                        <option value="">Select Semester</option>
+                        {% for semester in semesters %}
+                        <option value="{{ semester.id }}">{{ semester.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="Section">Section:</label>
+                    <select name="Section" id="Section" class="form-control">
+                        <option value="">Select Section</option>
+                        {% for sections in sections %}
+                        <option value="{{ sections.id }}">{{ sections.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="course">Course:</label>
+                    <select name="course" id="course" class="form-control">
+                        <option value="">Select Course</option>
+                        {% for course in courses %}
+                        <option value="{{ course.id }}">{{ course.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="date">Select Month and Year:</label>
+            <input type="month" name="date" id="date" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Show Students</button>
+    </form>
+</div>
+
+</body>
+</html>

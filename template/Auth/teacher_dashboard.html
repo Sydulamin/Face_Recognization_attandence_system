@@ -1,0 +1,80 @@
+<!-- teacher_dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Teacher Dashboard</title>
+    <!-- Bootstrap CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            {% if messages %}
+            <div class="alert alert-dismissible {% if messages.tags %}{{ messages.tags }}{% endif %}">
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+            </div>
+            {% endif %}
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title">Teacher Dashboard</h3>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <h4>Welcome, {{ prof.name }}!</h4>
+                        <p>Here is your Dashboard</p>
+                    </div>
+
+                    <!-- Show Teacher Details -->
+                    <div class="mb-4">
+                        <h5>Teacher Details</h5>
+                        <p>Department: {{prof.department}}</p>
+                        <p>ID: {{prof.teacher_id}}</p>
+                        <!-- Add more details as needed -->
+                    </div>
+
+                    <!-- Button Row -->
+                    <div class="row row-cols-md-2 g-3">
+                        <!-- Student Details -->
+
+
+                        <!-- Take Attendance -->
+
+                        <div class="col">
+                            <a href="{% url 'show_course_selection' %}" class="btn btn-success">Take Attendance</a>
+                        </div>
+
+                        <!-- Attendance List -->
+                        <div class="col">
+                            <a href="{% url 'attendance_input' %}" class="btn btn-info">Attendance List</a>
+                        </div>
+                        <div class="col">
+                            <a href="{% url 'student_details' %}" class="btn btn-primary">Student Details</a>
+                        </div>
+
+                        <!-- Manually Attendance System -->
+                        <div class="col">
+                            <a href="{% url 'take_attendance' %}" class="btn btn-secondary">Manually Attendance</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'teacher_logout' %}" class="btn btn-danger">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS from CDN (optional) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
